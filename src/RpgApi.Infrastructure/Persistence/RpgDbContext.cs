@@ -18,6 +18,7 @@ public partial class RpgDbContext : DbContext
     public DbSet<Character> Characters => Set<Character>();
     public DbSet<Item> Items => Set<Item>();
     public DbSet<CharacterItem> CharacterItems => Set<CharacterItem>();
+    public DbSet<User> Users => Set<User>();
 
     // Konstruktorn tar DbContextOptions – det gör att vi kan konfigurera
     // anslutningssträngen utifrån (i Program.cs) utan att hårdkoda den.

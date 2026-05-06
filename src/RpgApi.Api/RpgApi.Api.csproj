@@ -4,15 +4,24 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <!-- Generera XML-dokumentationsfil för Swagger -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <!-- Tysta varningar om odokumenterade members -->
+    <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.4">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+<<<<<<< HEAD
+=======
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
   </ItemGroup>
 
   <ItemGroup>

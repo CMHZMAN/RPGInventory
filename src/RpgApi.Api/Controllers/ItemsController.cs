@@ -1,4 +1,8 @@
 using MediatR;
+<<<<<<< HEAD
+=======
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
 using Microsoft.AspNetCore.Mvc;
 using RpgApi.Application.Items.Commands;
 using RpgApi.Application.Items.DTOs;
@@ -6,8 +10,16 @@ using RpgApi.Application.Items.Queries;
 
 namespace RpgApi.Api.Controllers;
 
+<<<<<<< HEAD
 [ApiController]
 [Route("api/[controller]")]
+=======
+/// <summary>CRUD-operationer för föremål.</summary>
+[ApiController]
+[Route("api/[controller]")]
+[Authorize]
+[Produces("application/json")]
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
 public class ItemsController : ControllerBase
 {
     private readonly IMediator _mediator;

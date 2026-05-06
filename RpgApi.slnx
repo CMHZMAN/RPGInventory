@@ -5,4 +5,5 @@
     <Project Path="src/RpgApi.Domain/RpgApi.Domain.csproj" />
     <Project Path="src/RpgApi.Infrastructure/RpgApi.Infrastructure.csproj" />
   </Folder>
+  <Project Path="../BenchmarkSuite1/BenchmarkSuite1.csproj" />
 </Solution>
