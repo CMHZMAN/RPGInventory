@@ -1,0 +1,130 @@
+/* ── Reset & Root ───────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #0f0e17;
+  --surface:      #1a1825;
+  --surface-2:    #252336;
+  --border:       #2e2b45;
+  --gold:         #d4a017;
+  --gold-light:   #f0c040;
+  --red:          #c0392b;
+  --green:        #27ae60;
+  --blue:         #2980b9;
+  --purple:       #8e44ad;
+  --text:         #e8e6f0;
+  --text-muted:   #7c7a8e;
+  --radius:       8px;
+  --shadow:       0 4px 20px rgba(0,0,0,.5);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* ── Layout ─────────────────────────────────────────────────── */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: .9rem 0;
+  position: sticky; top: 0; z-index: 100;
+}
+.navbar__inner { display: flex; align-items: center; gap: 2rem; }
+.navbar__brand { font-size: 1.25rem; font-weight: 700; color: var(--gold); text-decoration: none; }
+.navbar__link  { color: var(--text-muted); text-decoration: none; transition: color .15s; }
+.navbar__link:hover, .navbar__link.active { color: var(--gold); }
+
+/* ── Cards ───────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem 1rem; border-radius: var(--radius);
+  font-size: .85rem; font-weight: 600; cursor: pointer;
+  border: 1px solid transparent; transition: all .15s;
+  white-space: nowrap;
+}
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn-primary  { background: var(--gold); color: #000; border-color: var(--gold); }
+.btn-primary:hover:not(:disabled)  { background: var(--gold-light); }
+.btn-danger   { background: transparent; color: var(--red); border-color: var(--red); }
+.btn-danger:hover:not(:disabled)   { background: var(--red); color: #fff; }
+.btn-success  { background: var(--green); color: #fff; }
+.btn-success:hover:not(:disabled)  { filter: brightness(1.1); }
+.btn-ghost    { background: transparent; color: var(--text-muted); border-color: var(--border); }
+.btn-ghost:hover:not(:disabled)    { color: var(--text); border-color: var(--text-muted); }
+.btn-sm       { padding: .3rem .7rem; font-size: .78rem; }
+
+/* ── Forms ───────────────────────────────────────────────────── */
+.input, .select {
+  background: var(--surface-2); border: 1px solid var(--border);
+  border-radius: var(--radius); color: var(--text);
+  padding: .5rem .8rem; font-size: .9rem; width: 100%;
+  transition: border-color .15s;
+}
+.input:focus, .select:focus { outline: none; border-color: var(--gold); }
+.form-group { display: flex; flex-direction: column; gap: .4rem; }
+.form-label { font-size: .8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+
+/* ── Stats grid ─────────────────────────────────────────────── */
+.stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: .6rem; }
+.stat-box { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: .6rem; text-align: center; }
+.stat-box__value { font-size: 1.4rem; font-weight: 700; color: var(--gold); }
+.stat-box__label { font-size: .7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .05em; }
+
+/* ── Health bar ──────────────────────────────────────────────── */
+.health-bar { width: 100%; height: 10px; background: var(--surface-2); border-radius: 5px; overflow: hidden; }
+.health-bar__fill { height: 100%; border-radius: 5px; transition: width .4s ease; }
+
+/* ── Badge ───────────────────────────────────────────────────── */
+.badge {
+  display: inline-block; padding: .15rem .55rem;
+  border-radius: 99px; font-size: .72rem; font-weight: 600;
+}
+.badge-warrior { background: #7f3d1755; color: #e07b39; border: 1px solid #7f3d17; }
+.badge-mage    { background: #4a1d9655; color: #a78bfa; border: 1px solid #4a1d96; }
+.badge-rogue   { background: #1a3a1a55; color: #4ade80; border: 1px solid #1a3a1a; }
+.badge-paladin { background: #78350f55; color: #fbbf24; border: 1px solid #78350f; }
+.badge-ranger  { background: #1e3a2f55; color: #34d399; border: 1px solid #1e3a2f; }
+
+/* ── Page header ─────────────────────────────────────────────── */
+.page-header { padding: 2rem 0 1.5rem; }
+.page-header h1 { font-size: 1.8rem; color: var(--gold); }
+.page-header p  { color: var(--text-muted); margin-top: .3rem; }
+
+/* ── Grid layouts ────────────────────────────────────────────── */
+.character-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+.item-grid      { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .8rem; }
+
+/* ── Misc ────────────────────────────────────────────────────── */
+.divider { border: none; border-top: 1px solid var(--border); margin: 1.2rem 0; }
+.error-msg { color: var(--red); font-size: .85rem; }
+.text-muted { color: var(--text-muted); }
+.text-gold  { color: var(--gold); }
+.mt-1 { margin-top: .5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.flex { display: flex; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.gap-1 { gap: .5rem; }
+.gap-2 { gap: 1rem; }

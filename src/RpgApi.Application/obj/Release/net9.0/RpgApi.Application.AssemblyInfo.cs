@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RpgApi.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c27d14f6642e8fb10441aea790c3581a568bcf7a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2230a296835ab4eca6268c697dcf5db5589e747d")]
 [assembly: System.Reflection.AssemblyProductAttribute("RpgApi.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RpgApi.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
