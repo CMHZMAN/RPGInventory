@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/RpgApi.Api/RpgApi.Api.csproj" />
+    <Project Path="src/RpgApi.Application/RpgApi.Application.csproj" />
+    <Project Path="src/RpgApi.Domain/RpgApi.Domain.csproj" />
+    <Project Path="src/RpgApi.Infrastructure/RpgApi.Infrastructure.csproj" />
+  </Folder>
+</Solution>
