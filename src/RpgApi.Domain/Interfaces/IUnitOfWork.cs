@@ -19,6 +19,13 @@ public interface IUnitOfWork
     IItemRepository Items { get; }
 
     /// <summary>
+    /// Explicit spårning av CharacterItem behövs eftersom EF Core's change tracker
+    /// inte alltid detekterar additions till privata backing fields automatiskt.
+    /// Explicit AddAsync säkerställer korrekt EntityState.Added → INSERT.
+    /// </summary>
+    IRepository<Domain.Entities.CharacterItem> CharacterItems { get; }
+
+    /// <summary>
     /// Sparar alla ändringar som samlats sedan senaste anropet.
     /// Returnerar antal påverkade rader.
     /// </summary>

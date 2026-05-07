@@ -57,13 +57,18 @@ public class CharacterConfiguration : IEntityTypeConfiguration<Character>
             .HasConversion<int>(); // Explicit: lagra som INT
 
         // En-till-många: Character har många CharacterItems.
-        // WithOne: varje CharacterItem tillhör en Character.
-        // HasForeignKey: CharacterId är foreign key i CharacterItems-tabellen.
-        // OnDelete Cascade: om karaktären raderas, raderas inventariet också.
         builder.HasMany(c => c.Inventory)
             .WithOne(ci => ci.Character)
             .HasForeignKey(ci => ci.CharacterId)
             .OnDelete(DeleteBehavior.Cascade);
+
+        // Talar om för EF Core vilket backing field som ska användas för
+        // Inventory-navigationen. Utan detta kan EF Core's DetectChanges()
+        // missa additions till den privata _inventory-listan och försöka
+        // UPDATE istället för INSERT när nya CharacterItems läggs till.
+        builder.Navigation(c => c.Inventory)
+            .HasField("_inventory")
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
 
         // Index förbättrar sökhastigheten för vanliga queries
         builder.HasIndex(c => c.Name);
