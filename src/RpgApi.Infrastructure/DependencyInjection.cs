@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using RpgApi.Application.Common.Interfaces;
 using RpgApi.Domain.Interfaces;
 using RpgApi.Infrastructure.Persistence;
 using RpgApi.Infrastructure.Repositories;
+using RpgApi.Infrastructure.Services;
 
 namespace RpgApi.Infrastructure;
 
@@ -46,6 +48,8 @@ public static class DependencyInjection
         // Det är rätt livstid för DbContext och repositories –
         // de ska leva lika länge som requesten och sedan kastas.
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddSingleton<IJwtService, JwtService>();
+        services.AddSingleton<IPasswordHasher, BcryptPasswordHasher>();
 
         return services;
     }

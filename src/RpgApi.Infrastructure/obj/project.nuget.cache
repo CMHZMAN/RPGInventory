@@ -1,11 +1,16 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "UB7S8HNNWTs=",
+=======
+  "dgSpecHash": "OoEkMuaQCxo=",
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
   "success": true,
   "projectFilePath": "C:\\Users\\Marcus\\source\\repos\\CMHZMAN\\RPGInventory\\src\\RpgApi.Infrastructure\\RpgApi.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Marcus\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
+    "C:\\Users\\Marcus\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",
     "C:\\Users\\Marcus\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

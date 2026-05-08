@@ -1,4 +1,8 @@
 using MediatR;
+<<<<<<< HEAD
+=======
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
 using Microsoft.AspNetCore.Mvc;
 using RpgApi.Application.Characters.Commands;
 using RpgApi.Application.Characters.DTOs;
@@ -6,6 +10,7 @@ using RpgApi.Application.Characters.Queries;
 
 namespace RpgApi.Api.Controllers;
 
+<<<<<<< HEAD
 /// <summary>
 /// ApiController + Route sätter bas-URL till /api/characters.
 ///
@@ -21,6 +26,13 @@ namespace RpgApi.Api.Controllers;
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
+=======
+/// <summary>CRUD-operationer för karaktärer och inventariehantering.</summary>
+[ApiController]
+[Route("api/[controller]")]
+[Authorize]
+[Produces("application/json")]
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
 public class CharactersController : ControllerBase
 {
     private readonly IMediator _mediator;
