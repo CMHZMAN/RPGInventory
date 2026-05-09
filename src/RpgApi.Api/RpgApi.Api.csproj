@@ -4,15 +4,8 @@
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <!-- Generera XML-dokumentationsfil för Swagger -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-<<<<<<< HEAD
-    <!-- Tysta varningar om odokumenterade members -->
-    <NoWarn>$(NoWarn);1591</NoWarn>
-=======
-    <!-- Tysta varningar om odokumenterade members och CancellationToken param-taggar -->
     <NoWarn>$(NoWarn);1591;1573</NoWarn>
->>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,16 +16,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
->>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
   </ItemGroup>
-=======
-  <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
-</ItemGroup>
->>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
 
   <ItemGroup>
     <ProjectReference Include="..\RpgApi.Application\RpgApi.Application.csproj" />

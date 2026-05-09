@@ -14,11 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RpgApi.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2230a296835ab4eca6268c697dcf5db5589e747d")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c821534daace859e172b5c116b47248117a1668")]
->>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2dd307683e8109bdabf865251a01e21e6865ae3d")]
 [assembly: System.Reflection.AssemblyProductAttribute("RpgApi.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RpgApi.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

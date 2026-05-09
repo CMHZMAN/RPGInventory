@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RpgApi.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6c821534daace859e172b5c116b47248117a1668")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e28965e0ef858870de3d937b410d63098093e8b")]
 [assembly: System.Reflection.AssemblyProductAttribute("RpgApi.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RpgApi.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

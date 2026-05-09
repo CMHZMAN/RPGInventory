@@ -75,13 +75,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.4, )"
-<<<<<<< HEAD
-=======
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[7.3.1, )"
->>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
             }
           },
           "imports": [
