@@ -1,5 +1,9 @@
 using MediatR;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+using Microsoft.AspNetCore.Authorization;
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
 =======
 using Microsoft.AspNetCore.Authorization;
 >>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
@@ -12,24 +16,20 @@ namespace RpgApi.Api.Controllers;
 
 <<<<<<< HEAD
 /// <summary>
-/// ApiController + Route sätter bas-URL till /api/characters.
-///
-/// [ApiController] aktiverar automatisk modellvalidering och
-/// problemdetails-svar (fast vi hanterar undantag i middleware).
-///
-/// Controllern är TUNN – den delegerar allt till MediatR.
-/// Ingen affärslogik, ingen databaslogik här. Bara:
-///   1. Ta emot HTTP-request
-///   2. Skapa ett Command/Query
-///   3. Skicka via _mediator.Send()
-///   4. Returnera rätt HTTP-svar
+/// CRUD-operationer för karaktärer och inventariehantering.
+/// Alla endpoints kräver en giltig JWT-token.
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
+<<<<<<< HEAD
 =======
 /// <summary>CRUD-operationer för karaktärer och inventariehantering.</summary>
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
+[Produces("application/json")]
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
+=======
 [Authorize]
 [Produces("application/json")]
 >>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
@@ -39,7 +39,8 @@ public class CharactersController : ControllerBase
 
     public CharactersController(IMediator mediator) => _mediator = mediator;
 
-    // GET /api/characters
+    /// <summary>Hämtar alla karaktärer.</summary>
+    /// <response code="200">En lista med alla karaktärer returneras.</response>
     [HttpGet]
     [ProducesResponseType(typeof(IEnumerable<CharacterDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
@@ -48,20 +49,23 @@ public class CharactersController : ControllerBase
         return Ok(characters);
     }
 
-    // GET /api/characters/{id}
+    /// <summary>Hämtar en enskild karaktär med inventarie.</summary>
+    /// <param name="id">Karaktärens unika id.</param>
+    /// <response code="200">Karaktären hittades och returneras.</response>
+    /// <response code="404">Ingen karaktär med det angivna id:t finns.</response>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CharacterDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
         var character = await _mediator.Send(new GetCharacterByIdQuery(id), cancellationToken);
-
-        // Null → 404, annars 200 med DTO.
-        // Undantaget kastas i middleware – här är det null-pattern vi hanterar.
         return character is null ? NotFound() : Ok(character);
     }
 
-    // POST /api/characters
+    /// <summary>Skapar en ny karaktär.</summary>
+    /// <param name="command">Namn och klass för den nya karaktären.</param>
+    /// <response code="201">Karaktären skapades – returnerar den nya resursen med Location-header.</response>
+    /// <response code="400">Ogiltig data i request-body.</response>
     [HttpPost]
     [ProducesResponseType(typeof(CharacterDto), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -70,13 +74,14 @@ public class CharactersController : ControllerBase
         CancellationToken cancellationToken)
     {
         var character = await _mediator.Send(command, cancellationToken);
-
-        // 201 Created med Location-header som pekar på den nya resursen.
-        // Best practice för POST i REST.
         return CreatedAtAction(nameof(GetById), new { id = character.Id }, character);
     }
 
-    // PUT /api/characters/{id}/name
+    /// <summary>Byter namn på en karaktär.</summary>
+    /// <param name="id">Karaktärens unika id.</param>
+    /// <param name="request">Nytt namn.</param>
+    /// <response code="200">Namnet uppdaterades – den uppdaterade karaktären returneras.</response>
+    /// <response code="404">Ingen karaktär med det angivna id:t finns.</response>
     [HttpPut("{id:guid}/name")]
     [ProducesResponseType(typeof(CharacterDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -90,7 +95,10 @@ public class CharactersController : ControllerBase
         return Ok(character);
     }
 
-    // POST /api/characters/{id}/levelup
+    /// <summary>Höjer en karaktärs nivå med 1.</summary>
+    /// <param name="id">Karaktärens unika id.</param>
+    /// <response code="200">Level-up lyckades – den uppdaterade karaktären returneras.</response>
+    /// <response code="404">Ingen karaktär med det angivna id:t finns.</response>
     [HttpPost("{id:guid}/levelup")]
     [ProducesResponseType(typeof(CharacterDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -100,11 +108,16 @@ public class CharactersController : ControllerBase
         return Ok(character);
     }
 
-    // POST /api/characters/{id}/inventory/{itemId}
+    /// <summary>Lägger till ett föremål i karaktärens inventarie.</summary>
+    /// <param name="id">Karaktärens unika id.</param>
+    /// <param name="itemId">Föremålets unika id.</param>
+    /// <response code="200">Föremålet lades till – den uppdaterade karaktären returneras.</response>
+    /// <response code="400">Föremålet finns redan i inventariet eller annan domänregel bröts.</response>
+    /// <response code="404">Karaktären eller föremålet hittades inte.</response>
     [HttpPost("{id:guid}/inventory/{itemId:guid}")]
     [ProducesResponseType(typeof(CharacterDto), StatusCodes.Status200OK)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AddItem(
         Guid id, Guid itemId, CancellationToken cancellationToken)
     {
@@ -113,7 +126,11 @@ public class CharactersController : ControllerBase
         return Ok(character);
     }
 
-    // DELETE /api/characters/{id}/inventory/{itemId}
+    /// <summary>Tar bort ett föremål från karaktärens inventarie.</summary>
+    /// <param name="id">Karaktärens unika id.</param>
+    /// <param name="itemId">Inventariepostens unika id.</param>
+    /// <response code="200">Föremålet togs bort – den uppdaterade karaktären returneras.</response>
+    /// <response code="404">Karaktären eller inventarieposten hittades inte.</response>
     [HttpDelete("{id:guid}/inventory/{itemId:guid}")]
     [ProducesResponseType(typeof(CharacterDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -125,7 +142,10 @@ public class CharactersController : ControllerBase
         return Ok(character);
     }
 
-    // DELETE /api/characters/{id}
+    /// <summary>Tar bort en karaktär permanent.</summary>
+    /// <param name="id">Karaktärens unika id.</param>
+    /// <response code="204">Karaktären togs bort.</response>
+    /// <response code="404">Ingen karaktär med det angivna id:t finns.</response>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -136,5 +156,6 @@ public class CharactersController : ControllerBase
     }
 }
 
-// Litet request-objekt för PUT /name – undviker att exponera hela command i body
+/// <summary>Request-body för att byta namn på en karaktär.</summary>
+/// <param name="NewName">Det nya namnet.</param>
 public record UpdateCharacterNameRequest(string NewName);

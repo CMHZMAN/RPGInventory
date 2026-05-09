@@ -26,10 +26,20 @@ namespace RpgApi.Infrastructure.Services;
 /// </summary>
 public class JwtService : IJwtService
 {
+<<<<<<< HEAD
     private readonly string            _issuer;
     private readonly string            _audience;
     private readonly int               _expiryMinutes;
     private readonly SigningCredentials _signingCredentials;
+=======
+    private readonly string                 _issuer;
+    private readonly string                 _audience;
+    private readonly int                    _expiryMinutes;
+    private readonly SigningCredentials      _signingCredentials;
+    // JwtSecurityTokenHandler är thread-safe och avsedd att återanvändas.
+    // En ny instans per anrop kostar ~25 % av metodens CPU-budget.
+    private readonly JwtSecurityTokenHandler _tokenHandler = new();
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
 
     public JwtService(IConfiguration config)
     {
@@ -71,6 +81,10 @@ public class JwtService : IJwtService
             signingCredentials: _signingCredentials   // Återanvänd cached credentials
         );
 
+<<<<<<< HEAD
         return new JwtSecurityTokenHandler().WriteToken(token);
+=======
+        return _tokenHandler.WriteToken(token);
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
     }
 }
