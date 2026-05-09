@@ -60,3 +60,9 @@ export const CHARACTER_CLASSES: { label: string; value: number }[] = [
   { label: 'Paladin',  value: 4 },
   { label: 'Ranger',   value: 5 },
 ];
+
+export interface AuthResponse {
+  token: string;
+  username: string;
+  expiresAt: string;
+}
