@@ -1,4 +1,4 @@
-import type { Character, Item } from '../types/api.types';
+import type { AuthResponse, Character, Item } from '../types/api.types';
 import apiClient from './apiClient';
 
 /**
@@ -51,4 +51,17 @@ export const itemsApi = {
 
   getById: (id: string) =>
     apiClient.get<Item>(`/items/${id}`).then((r) => r.data),
+};
+
+// ── Auth ──────────────────────────────────────────────────────
+export const authApi = {
+  login: (username: string, password: string) =>
+    apiClient
+      .post<AuthResponse>('/auth/login', { username, password })
+      .then((r) => r.data),
+
+  register: (username: string, email: string, password: string) =>
+    apiClient
+      .post<AuthResponse>('/auth/register', { username, email, password })
+      .then((r) => r.data),
 };

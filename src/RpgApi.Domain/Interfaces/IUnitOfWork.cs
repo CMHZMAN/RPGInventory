@@ -18,6 +18,7 @@ public interface IUnitOfWork
     ICharacterRepository Characters { get; }
     IItemRepository Items { get; }
     IUserRepository Users { get; }
+<<<<<<< HEAD
 
     /// <summary>
     /// Explicit spårning av CharacterItem behövs eftersom EF Core's change tracker
@@ -25,6 +26,8 @@ public interface IUnitOfWork
     /// Explicit AddAsync säkerställer korrekt EntityState.Added → INSERT.
     /// </summary>
     IRepository<Domain.Entities.CharacterItem> CharacterItems { get; }
+=======
+>>>>>>> Made a new branch feat: scaffold Clean Architecture foundation for RPG API
 
     /// <summary>
     /// Explicit spårning av CharacterItem behövs eftersom EF Core's change tracker
